@@ -9,7 +9,7 @@ public class AsteroidBehavior : MonoBehaviour {
 	private float scaleFactor;
 	private Vector3 scale;
 	private Rigidbody2D rb;
-	// Use this for initialization
+
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		scaleFactor = Random.Range(scaleMin, scaleMax);
@@ -34,8 +34,16 @@ public class AsteroidBehavior : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player")
 		{
-			GameController.instance.GameOver();
+			GameController.instance.TriggerGameOver();
 			Destroy (this.gameObject);
 		}
+	}
+
+	void StartGame() {
+
+	}
+
+	void GameOver () {
+
 	}
 }

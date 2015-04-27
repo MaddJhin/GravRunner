@@ -1,13 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AsteroidBehavior.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AsteroidSpawner.cs">
     <Files>
-      <File FileName="Assets\Scripts\AsteroidBehavior.cs" Line="33" Column="2" />
-      <File FileName="Assets\Scripts\GameController.cs" Line="6" Column="27" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="16" Column="1" />
+      <File FileName="Assets\Scripts\AsteroidBehavior.cs" Line="43" Column="3" />
+      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="15" Column="23" />
+      <File FileName="Assets\Scripts\AsteroidSpawner.cs" Line="14" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Francisco\Repositories\Grav Runner\Assets\Scripts\PlayerMovement.cs" line="72" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

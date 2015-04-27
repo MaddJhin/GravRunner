@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
+
+	public delegate void GameEvent();
+	public static event GameEvent GameOver;
+	public static event GameEvent StartGame;
 
 	public static GameController instance;
 	public GameObject player;
@@ -22,13 +27,20 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	
+
 	}
 
-	public void GameOver() {
-		player.GetComponent<Rigidbody2D>().isKinematic = true;
-		player.GetComponent<Renderer>().enabled = false;
-		player.SetActive(false);
+	public void TriggerGameOver() {
+		if (GameOver != null)
+		{
+			GameOver();
+		}
+	}
+
+	public void TriggerStartGame () {
+		if (StartGame != null)
+		{
+			StartGame();
+		}
 	}
 }

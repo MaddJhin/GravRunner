@@ -10,7 +10,17 @@ public class AsteroidSpawner : MonoBehaviour {
 	public float offset;
 
 	private bool spawning;
-	// Use this for initialization
+
+	void OnEnable () {
+		GameController.StartGame += StartGame;
+		GameController.GameOver += GameOver;
+	}
+
+	void OnDisable () {
+		GameController.StartGame -= StartGame;
+		GameController.GameOver -= GameOver;
+	}
+
 	void Start () {
 		spawning = true;
 		StartCoroutine (SpawnAsteroid());
@@ -31,5 +41,13 @@ public class AsteroidSpawner : MonoBehaviour {
 
 			yield return new WaitForSeconds (waveDelay);
 		}
+	}
+
+	void StartGame() {
+
+	}
+
+	void GameOver() {
+		spawning = false;
 	}
 }

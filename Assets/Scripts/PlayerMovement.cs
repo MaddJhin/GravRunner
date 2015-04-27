@@ -7,11 +7,23 @@ public class PlayerMovement : MonoBehaviour {
 	public float turnStrength;
 
 	private Rigidbody2D body;
+	private Renderer rend;
 	private bool facingUp;
+
+	void OnEnable() {
+		GameController.GameOver += GameOver;
+		GameController.StartGame += StartGame;
+	}
+
+	void OnDisable() {
+		GameController.GameOver -= GameOver;
+		GameController.StartGame -= StartGame;
+	}
 
 	// Use this for initialization
 	void Start () {
 		facingUp = false;
+		rend = GetComponent<Renderer>();
 		body = GetComponent<Rigidbody2D>();
 	}
 	
@@ -43,4 +55,17 @@ public class PlayerMovement : MonoBehaviour {
 			facingUp = false;
 		}
 	}
+
+	void StartGame() {
+		body.isKinematic = true;
+		rend.enabled = true;
+		enabled = true;
+	}
+
+	void GameOver() {
+		body.isKinematic = true;
+		rend.enabled = false;
+		enabled = false;
+	}
+
 }
