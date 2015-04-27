@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float maxSpeed = 1;
 	public float turnStrength;
+	public Vector3 startPosition;
 
 	private Rigidbody2D body;
 	private Renderer rend;
@@ -13,11 +14,6 @@ public class PlayerMovement : MonoBehaviour {
 	void OnEnable() {
 		GameController.GameOver += GameOver;
 		GameController.StartGame += StartGame;
-	}
-
-	void OnDisable() {
-		GameController.GameOver -= GameOver;
-		GameController.StartGame -= StartGame;
 	}
 
 	// Use this for initialization
@@ -57,7 +53,10 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void StartGame() {
-		body.isKinematic = true;
+		transform.position = startPosition;
+		transform.eulerAngles = new Vector3 (transform.eulerAngles.x, transform.eulerAngles.y, 270f);
+		body.angularVelocity = 0;
+		body.isKinematic = false;
 		rend.enabled = true;
 		enabled = true;
 	}

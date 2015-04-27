@@ -10,14 +10,17 @@ public class AsteroidBehavior : MonoBehaviour {
 	private Vector3 scale;
 	private Rigidbody2D rb;
 
+	void OnEnable() {
+		GameController.StartGame += StartGame;
+	}
+
+	void OnDisable() {
+		GameController.StartGame -= StartGame;
+	}
+
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
-		scaleFactor = Random.Range(scaleMin, scaleMax);
-		scale = new Vector3 (scaleFactor, scaleFactor, scaleFactor);
-
-		transform.localScale = scale;
-
-		Tumble();
+		StartGame();
 	}
 
 	void Tumble (){
@@ -40,10 +43,11 @@ public class AsteroidBehavior : MonoBehaviour {
 	}
 
 	void StartGame() {
-
-	}
-
-	void GameOver () {
-
+		scaleFactor = Random.Range(scaleMin, scaleMax);
+		scale = new Vector3 (scaleFactor, scaleFactor, scaleFactor);
+		
+		transform.localScale = scale;
+		
+		Tumble();
 	}
 }

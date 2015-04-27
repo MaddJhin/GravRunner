@@ -11,9 +11,6 @@ public class GameController : MonoBehaviour {
 	public static GameController instance;
 	public GameObject player;
 
-	private bool gameOver;
-	private bool restart;
-
 	void Awake() {
 		instance = this;
 	}
@@ -21,8 +18,6 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
-		gameOver = false;
-		restart = false;
 	}
 	
 	// Update is called once per frame

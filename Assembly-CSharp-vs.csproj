@@ -54,6 +54,8 @@
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\SimpleScrolling.cs" />
+     <Compile Include="Assets\Scripts\StartingAsteroidsSpawner.cs" />
+     <Compile Include="Assets\Scripts\UIManager.cs" />
      <Compile Include="Assets\_Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
      <Compile Include="Assets\_Standard Assets\2D\Scripts\Camera2DFollow.cs" />
      <Compile Include="Assets\_Standard Assets\2D\Scripts\CameraFollow.cs" />

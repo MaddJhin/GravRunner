@@ -3,13 +3,14 @@ using System.Collections;
 
 public class AsteroidSpawner : MonoBehaviour {
 
+	public GameObject startingAsteroids;
 	public GameObject[] asteroids;
 	public float startDelay, waveDelay, spawnDelay;
 	public float waveCount;
-
 	public float offset;
 
 	private bool spawning;
+	private GameObject asteroidField;
 
 	void OnEnable () {
 		GameController.StartGame += StartGame;
@@ -22,8 +23,7 @@ public class AsteroidSpawner : MonoBehaviour {
 	}
 
 	void Start () {
-		spawning = true;
-		StartCoroutine (SpawnAsteroid());
+		StartGame ();
 	}
 
 	IEnumerator SpawnAsteroid(){
@@ -35,7 +35,8 @@ public class AsteroidSpawner : MonoBehaviour {
 				Vector3 position = new Vector3 (transform.position.x, 
 				                                transform.position.y + Random.Range(-offset, offset), 
 				                                transform.position.z);
-				Instantiate (asteroids[Random.Range(0, asteroids.Length)], position, Quaternion.identity);
+				GameObject asteroid = Instantiate (asteroids[Random.Range(0, asteroids.Length)], position, Quaternion.identity) as GameObject;
+				asteroid.transform.parent = asteroidField.transform;;
 				yield return new WaitForSeconds (spawnDelay);
 			}
 
@@ -44,7 +45,13 @@ public class AsteroidSpawner : MonoBehaviour {
 	}
 
 	void StartGame() {
-
+		if (asteroidField != null)
+		{
+			Destroy(asteroidField);
+		}
+		asteroidField = new GameObject ("Asteroid Field");
+		spawning = true;
+		StartCoroutine (SpawnAsteroid());
 	}
 
 	void GameOver() {
