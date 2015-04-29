@@ -34,14 +34,6 @@ public class AsteroidBehavior : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag == "Player")
-		{
-			GameController.instance.TriggerGameOver();
-			Destroy (this.gameObject);
-		}
-	}
-
 	void StartGame() {
 		scaleFactor = Random.Range(scaleMin, scaleMax);
 		scale = new Vector3 (scaleFactor, scaleFactor, scaleFactor);

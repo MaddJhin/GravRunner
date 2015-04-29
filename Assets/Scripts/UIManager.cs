@@ -9,28 +9,44 @@ public class UIManager : MonoBehaviour {
 	public Button restartButton;
 	public Button exitButton;
 	public GameObject mainMenu;
+	public int scoreMultiplier = 2;
 
 	private bool paused;
+	private bool gameOver;
+	private int score = 0;
+	private float startTime;
 
 	void OnEnable() {
 		GameController.StartGame += StartGame;
 		GameController.GameOver += GameOver;
 	}
 
-	// Use this for initialization
-	void Start () {
-		ResumeGame();
+	void OnDisable() {
+		GameController.StartGame -= StartGame;
+		GameController.GameOver -= GameOver;
 	}
-	
-	// Update is called once per frame
+
+	void Start () {
+		StartGame();
+	}
+
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape) && !paused)
 		{
+			Debug.Log("Game Paused");
 			PauseGame();
 		}
 		else if (Input.GetKeyDown (KeyCode.Escape) && paused)
 		{
+			Debug.Log("Game Resumed");
 			ResumeGame();
+		}
+
+		score = Mathf.RoundToInt((Time.time - startTime) * scoreMultiplier);
+
+		if (!gameOver)
+		{
+			scoreText.text = "Score: " + score;
 		}
 	}
 
@@ -38,28 +54,31 @@ public class UIManager : MonoBehaviour {
 		paused = true;
 		noticeText.text = "Game Paused";
 		noticeText.enabled = true;
-		exitButton.gameObject.SetActive (true);
-		restartButton.gameObject.SetActive(true);
+		exitButton.interactable = true;
+		restartButton.interactable = true;
 		Time.timeScale = 0;
 	}
 
 	void ResumeGame() {
 		paused = false;
-		Time.timeScale = 1;
 		noticeText.enabled = false;
-		exitButton.gameObject.SetActive (false);
-		restartButton.gameObject.SetActive(false);
-
+		exitButton.interactable = false;
+		restartButton.interactable = false;
+		Time.timeScale = 1;
 	}
 
 	void StartGame () {
+		startTime = Time.time;
+		gameOver = false;
 		ResumeGame();
 	}
 
 	void GameOver() {
+		gameOver = true;
 		noticeText.text = "Game Over";
 		noticeText.enabled = true;
-		exitButton.gameObject.SetActive (true);
-		restartButton.gameObject.SetActive(true);
+		exitButton.interactable = true;
+		restartButton.interactable = true;
+		Debug.Log("Game Over");
 	}
 }

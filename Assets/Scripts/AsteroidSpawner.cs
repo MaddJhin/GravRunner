@@ -11,6 +11,7 @@ public class AsteroidSpawner : MonoBehaviour {
 
 	private bool spawning;
 	private GameObject asteroidField;
+	private IEnumerator coroutine;
 
 	void OnEnable () {
 		GameController.StartGame += StartGame;
@@ -23,6 +24,7 @@ public class AsteroidSpawner : MonoBehaviour {
 	}
 
 	void Start () {
+		coroutine = SpawnAsteroid();
 		StartGame ();
 	}
 
@@ -51,10 +53,11 @@ public class AsteroidSpawner : MonoBehaviour {
 		}
 		asteroidField = new GameObject ("Asteroid Field");
 		spawning = true;
-		StartCoroutine (SpawnAsteroid());
+		StartCoroutine (coroutine);
 	}
 
 	void GameOver() {
-		spawning = false;
+		StopCoroutine(coroutine);
+
 	}
 }

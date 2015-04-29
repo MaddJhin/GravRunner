@@ -11,6 +11,10 @@ public class StartingAsteroidsSpawner : MonoBehaviour {
 		GameController.StartGame += StartGame;
 	}
 
+	void OnDisable (){
+		GameController.StartGame -= StartGame;
+	}
+
 	void Start() {
 		StartGame();
 	}
